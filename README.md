@@ -1,42 +1,44 @@
 # NRBot
 
-NRBot is an image recognition based bot for NieR Re[in]carnation. It is based on the Airtest framework (Python). It currently only supports English UI. The main goal of NRBot is to automate repetitive content in the game where a simple macro won't suffice.
+A simple AFK bot for Minecraft Java servers (originally used with an Aternos server), built on [mineflayer](https://github.com/PrismarineJS/mineflayer). It joins the server, walks and looks around at random intervals so it isn't kicked for idling, and reconnects automatically if it gets disconnected.
 
-Installation
+> This project is **not** related to the NieR Re[in]carnation image-recognition bot of the same name.
 
-Install AirtestIDE.
-Extract it to your favorite path.
-Download ADB (e.g. from here) and add it to your system path.
-Copy settings.default.jsonc to settings.jsonc and update the config. Refer to the comments for instructions.
-Make sure you already set up the proper team for the quests in the game.
-Usage
+## Requirements
 
-Run python NRBot.py <script_name> in this directory. Here, <script_name> can be any of the following:
+- Node.js 14 or newer
+- A Minecraft Java server the bot is allowed to join (offline-mode / cracked servers only, since the bot has no Microsoft login)
 
-resetfarming: Farms purple grade items in daily dark lairs by resetting if no drop.
-darkdaily: Clears all specified daily dark lairs.
-dungeon: Farms specified dark dungeon for memoirs.
-arena: Battles in arena.
-Example
+## Setup
 
-To farm purple grade items in daily dark lairs, run the following command:
+```bash
+git clone https://github.com/fakcodr/NRBot.git
+cd NRBot
+npm install
+```
 
-python NRBot.py resetfarming
-NRBot will then start farming the dark lairs, resetting if no purple grade item drops. It will continue farming until you stop the script.
+Edit `config.json`:
 
-Notes
+| Key | Description |
+| --- | --- |
+| `ip` | Server address, e.g. `yourserver.aternos.me` |
+| `port` | Server port (default `25565`) |
+| `name` | Username the bot joins with |
+| `auto-night-skip` | `true` makes the bot run `/time set day` at night (needs operator permissions) |
 
-NRBot is still under development. Please report any bugs or suggestions to the author.
-NRBot requires AirtestIDE to be installed.
-NRBot currently only supports English UI.
-License
+## Run
 
-NRBot is licensed under the MIT License.
+```bash
+npm start
+```
 
-Contributing
+For hosting on a platform like Heroku, the included `Procfile` runs the bot as a `worker` process.
 
-Contributions to NRBot are welcomed. Please fork the repository and create a pull request with your changes.
+## Notes
 
-Sources
-github.com/Anyrainel/NRBot
-github.com/Anyrainel/NRBot#:~:text=NRBot%20is%20an%20image%20recognition,simple%20macro%20won't%20suffice.
+- Only use this on servers where you have permission to run bots.
+- Aternos may still shut down idle servers according to its own rules.
+
+## License
+
+ISC
